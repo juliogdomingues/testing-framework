@@ -135,7 +135,14 @@ class TestLoaderTest(framework.TestCase):
 
 if __name__ == "__main__":
     loader = framework.TestLoader()
-    suite = loader.make_suite(TestLoaderTest)
+    test_case_suite = loader.make_suite(TestCaseTest)
+    test_suite_suite = loader.make_suite(TestSuiteTest)
+    test_load_suite = loader.make_suite(TestLoaderTest)
+
+    suite = framework.TestSuite()
+    suite.add_test(test_case_suite)
+    suite.add_test(test_suite_suite)
+    suite.add_test(test_load_suite)
 
     runner = framework.TestRunner()
     runner.run(suite)

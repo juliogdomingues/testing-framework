@@ -1,6 +1,6 @@
-from case import TestCase
+import framework
 
-class MyTest(TestCase):
+class MyTest(framework.TestCase):
     def set_up(self):
         print('set_up')
 
@@ -17,11 +17,15 @@ class MyTest(TestCase):
         print('test_c')
 
 if __name__ == "__main__":
+    result = framework.TestResult()
+
     test = MyTest('test_a')
-    test.run()
+    test.run(result)
 
     test = MyTest('test_b')
-    test.run()
+    test.run(result)
 
     test = MyTest('test_c')
-    test.run()
+    test.run(result)
+
+    print(result.summary())
